@@ -80,7 +80,10 @@ class Profile extends React.Component {
   componentDidMount() {
     const username = this.props.params.username?.substring(1);
     this.props.onLoad(
-      Promise.all([agent.Profile.get(username), agent.Items.bySeller(username)])
+      Promise.all([
+        agent.Profile.get(username),
+        agent.Items.bySeller(username),
+      ])
     );
   }
 
@@ -165,8 +168,5 @@ class Profile extends React.Component {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouterParams(Profile));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouterParams(Profile));
 export { Profile, mapStateToProps };
